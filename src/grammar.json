@@ -1,0 +1,178 @@
+{
+  "name": "tradenotate",
+  "rules": {
+    "source_file": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_term"
+      }
+    },
+    "_term": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "price_line"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "options_leg"
+        }
+      ]
+    },
+    "price_line": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "at"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "price"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "debit"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "credit"
+            }
+          ]
+        }
+      ]
+    },
+    "at": {
+      "type": "STRING",
+      "value": "@"
+    },
+    "debit": {
+      "type": "STRING",
+      "value": "(DEBIT)"
+    },
+    "credit": {
+      "type": "STRING",
+      "value": "(CREDIT)"
+    },
+    "options_leg": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "side"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "underlying"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expiration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "right"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "open_or_close"
+        }
+      ]
+    },
+    "buy": {
+      "type": "STRING",
+      "value": "BUY"
+    },
+    "sell": {
+      "type": "STRING",
+      "value": "SELL"
+    },
+    "side": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "buy"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "sell"
+        }
+      ]
+    },
+    "open_or_close": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "TO_OPEN"
+        },
+        {
+          "type": "STRING",
+          "value": "TO_CLOSE"
+        }
+      ]
+    },
+    "expiration": {
+      "type": "PATTERN",
+      "value": "\\d{4}-\\d{2}-\\d{2}"
+    },
+    "right": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "C(ALL)?"
+        },
+        {
+          "type": "PATTERN",
+          "value": "P(UT)?"
+        }
+      ]
+    },
+    "underlying": {
+      "type": "PATTERN",
+      "value": "[A-Z]{2,4}"
+    },
+    "price": {
+      "type": "PATTERN",
+      "value": "-?\\d+(?:\\.\\d{1,2})?"
+    },
+    "number": {
+      "type": "PATTERN",
+      "value": "\\d+"
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[A-Za-z]+"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}

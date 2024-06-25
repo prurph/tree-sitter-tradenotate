@@ -1,0 +1,160 @@
+[
+  {
+    "type": "open_or_close",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "options_leg",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expiration",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "open_or_close",
+          "named": true
+        },
+        {
+          "type": "right",
+          "named": true
+        },
+        {
+          "type": "side",
+          "named": true
+        },
+        {
+          "type": "underlying",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "price_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "at",
+          "named": true
+        },
+        {
+          "type": "credit",
+          "named": true
+        },
+        {
+          "type": "debit",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "price",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "right",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "side",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "buy",
+          "named": true
+        },
+        {
+          "type": "sell",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "options_leg",
+          "named": true
+        },
+        {
+          "type": "price_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TO_CLOSE",
+    "named": false
+  },
+  {
+    "type": "TO_OPEN",
+    "named": false
+  },
+  {
+    "type": "at",
+    "named": true
+  },
+  {
+    "type": "buy",
+    "named": true
+  },
+  {
+    "type": "credit",
+    "named": true
+  },
+  {
+    "type": "debit",
+    "named": true
+  },
+  {
+    "type": "expiration",
+    "named": true
+  },
+  {
+    "type": "number",
+    "named": true
+  },
+  {
+    "type": "price",
+    "named": true
+  },
+  {
+    "type": "sell",
+    "named": true
+  },
+  {
+    "type": "underlying",
+    "named": true
+  }
+]

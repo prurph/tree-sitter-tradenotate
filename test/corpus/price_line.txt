@@ -1,0 +1,19 @@
+==========
+Price line
+==========
+
+5 @ 7.70 (DEBIT)
+1 @ -8.75 (CREDIT)
+---
+
+(source_file
+    (price_line
+        (number)
+        (at)
+        (price)
+        (debit))
+    (price_line
+        (number)
+        (at)
+        (price)
+        (credit)))
