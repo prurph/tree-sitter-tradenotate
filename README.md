@@ -6,7 +6,7 @@ Basically I have a super primitive grammar in grammar.js. Here are commands:
 
 ```sh
 # Run tests
-$ tree-sitter test
+$ tree-sitter generate && tree-sitter test
 
 # Build parser.so
 $ gcc -shared -o src/parser.so -I./src src/parser.c -Os
@@ -15,7 +15,7 @@ $ gcc -shared -o src/parser.so -I./src src/parser.c -Os
 $ npm run build
 
 # Then copy it and highlights.scm to moneybadger
-$ cp {src/parser.so,src/highlights.scm} ../moneybadger/moneybadger/ui/components/
+$ cp src/{parser.so,highlights.scm} ../moneybadger/moneybadger/ui/components/
 ```
 
 I found the gcc incantation on stack overflow. The makefile was generating dylib I guess because I'm on macOS and I wasn't immediately sure how to generate the .so files so I just invoke gcc directly.
