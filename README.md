@@ -15,12 +15,10 @@ $ gcc -shared -o src/parser.so -I./src src/parser.c -Os
 $ npm run build
 
 # Then copy it and highlights.scm to moneybadger
-$ cp src/{parser.so,highlights.scm} ../moneybadger/moneybadger/ui/components/
+$ cp src/{parser.so,highlights.scm} ~/Code/moneybadger/moneybadger/ui/components/
 ```
 
 I found the gcc incantation on stack overflow. The makefile was generating dylib I guess because I'm on macOS and I wasn't immediately sure how to generate the .so files so I just invoke gcc directly.
-
-The `npm run build` script invokes gcc and then copies tradenotate.so into the components directory where the TextArea looks for it.
 
 ## Highlighting
 

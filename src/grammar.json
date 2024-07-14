@@ -149,7 +149,7 @@
     },
     "underlying": {
       "type": "PATTERN",
-      "value": "[A-Z]{2,4}"
+      "value": "[A-Z]{1,5}"
     },
     "price": {
       "type": "PATTERN",
