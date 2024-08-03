@@ -1,0 +1,39 @@
+===
+Combo Contract
+===
+BUY  1 CRWD 2024-07-19 380  PUT  TO_OPEN
+SELL 1 RIVN 2024-07-19 14.5 C
+---
+
+(source_file
+  (contracts
+    (option_contract
+      (side (buy))
+      (quantity)
+      (underlying)
+      (expiration)
+      (strike)
+      (right)
+      (open_close))
+    (option_contract
+      (side (sell))
+      (quantity)
+      (underlying)
+      (expiration)
+      (strike)
+        (right))))
+===
+Single Contract
+===
+BUY CRWD 2024-07-19 380  PUT  TO OPEN
+---
+
+(source_file
+  (contracts
+    (option_contract
+      (side (buy))
+      (underlying)
+      (expiration)
+      (strike)
+      (right)
+      (open_close))))

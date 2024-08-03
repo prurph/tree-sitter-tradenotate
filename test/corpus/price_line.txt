@@ -1,19 +1,23 @@
-==========
-Price line
-==========
-
-5 @ 7.70 (DEBIT)
-1 @ -8.75 (CREDIT)
+===
+Price Line Negative Price
+===
+8 @ -6 CREDIT
 ---
 
 (source_file
-    (price_line
-        (number)
-        (at)
-        (price)
-        (debit))
-    (price_line
-        (number)
-        (at)
-        (price)
-        (credit)))
+  (price_line
+    (quantity)
+    (price)
+    (debit_credit (credit))))
+
+====
+Price Line Decimal Price
+====
+18 @ 16.50 DEBIT
+---
+
+(source_file
+  (price_line
+    (quantity)
+    (price)
+    (debit_credit (debit))))

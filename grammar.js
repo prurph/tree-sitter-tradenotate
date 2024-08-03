@@ -4,45 +4,56 @@ module.exports = grammar({
   // This is a very poor grammar that just matches some individual terms.
   // I need to go through Crafting Interpreters. 😅
   rules: {
-    source_file: ($) => repeat($._term),
+    source_file: ($) =>
+      repeat(prec.right(choice($.comment, $.contracts, $.price_line))),
 
-    // TODO: should only be one of each with a flexible order
-    _term: ($) => choice($.price_line, $.options_leg),
+    comment: ($) => token(seq("#", /.*/)),
 
-    price_line: ($) => seq($.number, $.at, $.price, choice($.debit, $.credit)),
+    contracts: ($) => prec.right(repeat1($.option_contract)),
 
-    at: ($) => "@",
-
-    debit: ($) => "(DEBIT)",
-    credit: ($) => "(CREDIT)",
-
-    options_leg: ($) =>
+    price_line: ($) =>
       seq(
-        $.side,
-        $.number,
-        $.underlying,
-        $.expiration,
-        $.number,
-        $.right,
-        $.open_or_close,
+        field("quantity", $.quantity),
+        "@",
+        field("price", $.price),
+        field("debit_credit", $.debit_credit),
+      ),
+
+    option_contract: ($) =>
+      seq(
+        field("side", $.side),
+        field("ratio", optional($.quantity)),
+        field("underlying", $.underlying),
+        field("expiration", $.expiration),
+        field("strike", $.strike),
+        field("right", $.right),
+        field("open_close", optional($.open_close)),
       ),
 
     buy: ($) => "BUY",
+
     sell: ($) => "SELL",
+
     side: ($) => choice($.buy, $.sell),
 
-    open_or_close: ($) => choice("TO_OPEN", "TO_CLOSE"),
-
-    expiration: ($) => /\d{4}-\d{2}-\d{2}/,
-
-    right: ($) => choice(/C(ALL)?/, /P(UT)?/),
+    quantity: ($) => /\d+/,
 
     underlying: ($) => /[A-Z]{1,5}/,
 
+    expiration: ($) => /\d{4}-\d{2}-\d{2}/,
+
+    strike: ($) => /\d+(?:\.\d{1,2})?/,
+
+    right: ($) => choice(/P(UT)?/, /C(ALL)?/),
+
     price: ($) => /-?\d+(?:\.\d{1,2})?/,
 
-    number: ($) => /\d+/,
+    debit: ($) => "DEBIT",
 
-    identifier: ($) => /[A-Za-z]+/,
+    credit: ($) => "CREDIT",
+
+    debit_credit: ($) => choice($.debit, $.credit),
+
+    open_close: ($) => choice(/TO[_ ]OPEN/, /TO[_ ]CLOSE/),
   },
 });

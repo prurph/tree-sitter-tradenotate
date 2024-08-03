@@ -1,0 +1,52 @@
+===
+Multiple Orders
+===
+15 @ 1.75 CREDIT
+
+SELL 1 SHOP 2024-08-02 55  PUT
+BUY  1 SHOP 2024-08-09 60  PUT
+
+15 @ 3.02 DEBIT
+
+BUY  2 SHOP 2024-08-09 65  CALL
+SELL 1 SHOP 2024-08-02 70  CALL
+---
+(source_file
+  (price_line
+    (quantity)
+    (price)
+    (debit_credit (credit)))
+  (contracts
+    (option_contract
+      (side (sell))
+      (quantity)
+      (underlying)
+      (expiration)
+      (strike)
+      (right))
+    (option_contract
+      (side (buy))
+      (quantity)
+      (underlying)
+      (expiration)
+      (strike)
+      (right)))
+  (price_line
+    (quantity)
+    (price)
+    (debit_credit (debit)))
+  (contracts
+    (option_contract
+      (side (buy))
+      (quantity)
+      (underlying)
+      (expiration)
+      (strike)
+      (right))
+    (option_contract
+      (side (sell))
+      (quantity)
+      (underlying)
+      (expiration)
+      (strike)
+      (right))))

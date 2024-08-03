@@ -1,0 +1,96 @@
+===
+Single-Leg Trade
+===
+15 @ 1.75 CREDIT
+
+SELL DIS 2024-08-02 65 CALL TO OPEN
+---
+
+(source_file
+  (price_line
+    (quantity)
+    (price)
+    (debit_credit (credit)))
+  (contracts
+    (option_contract
+      (side (sell))
+      (underlying)
+      (expiration)
+      (strike)
+      (right)
+      (open_close))))
+===
+Multi-Leg Trade
+===
+15 @ 1.75 DEBIT
+
+BUY  1 RIVN 2024-08-09 15   CALL
+SELL 1 RIVN 2024-08-09 14.5 PUT
+---
+
+(source_file
+  (price_line
+    (quantity)
+    (price)
+    (debit_credit (debit)))
+  (contracts
+    (option_contract
+      (side (buy))
+      (quantity)
+      (underlying)
+      (expiration)
+      (strike)
+      (right))
+    (option_contract
+      (side (sell))
+      (quantity)
+      (underlying)
+      (expiration)
+      (strike)
+      (right))))
+
+===
+Four-Leg Trade
+===
+15 @ 1.75 DEBIT
+
+SELL 1 SHOP 2024-08-02 55  PUT
+BUY  2 SHOP 2024-08-09 60  PUT
+BUY  2 SHOP 2024-08-09 65  CALL
+SELL 1 SHOP 2024-08-02 70  CALL
+---
+
+(source_file
+  (price_line
+    (quantity)
+    (price)
+    (debit_credit (debit)))
+  (contracts
+    (option_contract
+      (side (sell))
+      (quantity)
+      (underlying)
+      (expiration)
+      (strike)
+      (right))
+    (option_contract
+      (side (buy))
+      (quantity)
+      (underlying)
+      (expiration)
+      (strike)
+      (right))
+    (option_contract
+      (side (buy))
+      (quantity)
+      (underlying)
+      (expiration)
+      (strike)
+      (right))
+    (option_contract
+      (side (sell))
+      (quantity)
+      (underlying)
+      (expiration)
+      (strike)
+      (right))))
