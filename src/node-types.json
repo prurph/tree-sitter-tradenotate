@@ -1,11 +1,6 @@
 [
   {
-    "type": "open_or_close",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "options_leg",
+    "type": "contracts",
     "named": true,
     "fields": {},
     "children": {
@@ -13,44 +8,20 @@
       "required": true,
       "types": [
         {
-          "type": "expiration",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "open_or_close",
-          "named": true
-        },
-        {
-          "type": "right",
-          "named": true
-        },
-        {
-          "type": "side",
-          "named": true
-        },
-        {
-          "type": "underlying",
+          "type": "option_contract",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "price_line",
+    "type": "debit_credit",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "at",
-          "named": true
-        },
         {
           "type": "credit",
           "named": true
@@ -58,16 +29,125 @@
         {
           "type": "debit",
           "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "price",
-          "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "open_close",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "option_contract",
+    "named": true,
+    "fields": {
+      "expiration": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expiration",
+            "named": true
+          }
+        ]
+      },
+      "open_close": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "open_close",
+            "named": true
+          }
+        ]
+      },
+      "ratio": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quantity",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "right",
+            "named": true
+          }
+        ]
+      },
+      "side": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "side",
+            "named": true
+          }
+        ]
+      },
+      "strike": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "strike",
+            "named": true
+          }
+        ]
+      },
+      "underlying": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "underlying",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "price_line",
+    "named": true,
+    "fields": {
+      "debit_credit": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "debit_credit",
+            "named": true
+          }
+        ]
+      },
+      "price": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "price",
+            "named": true
+          }
+        ]
+      },
+      "quantity": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "quantity",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -103,7 +183,11 @@
       "required": false,
       "types": [
         {
-          "type": "options_leg",
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "contracts",
           "named": true
         },
         {
@@ -114,19 +198,15 @@
     }
   },
   {
-    "type": "TO_CLOSE",
+    "type": "@",
     "named": false
-  },
-  {
-    "type": "TO_OPEN",
-    "named": false
-  },
-  {
-    "type": "at",
-    "named": true
   },
   {
     "type": "buy",
+    "named": true
+  },
+  {
+    "type": "comment",
     "named": true
   },
   {
@@ -142,15 +222,19 @@
     "named": true
   },
   {
-    "type": "number",
-    "named": true
-  },
-  {
     "type": "price",
     "named": true
   },
   {
+    "type": "quantity",
+    "named": true
+  },
+  {
     "type": "sell",
+    "named": true
+  },
+  {
+    "type": "strike",
     "named": true
   },
   {

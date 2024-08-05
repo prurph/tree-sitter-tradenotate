@@ -4,95 +4,161 @@
     "source_file": {
       "type": "REPEAT",
       "content": {
-        "type": "SYMBOL",
-        "name": "_term"
+        "type": "PREC_RIGHT",
+        "value": 0,
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "comment"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "contracts"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "price_line"
+            }
+          ]
+        }
       }
     },
-    "_term": {
-      "type": "CHOICE",
-      "members": [
-        {
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "#"
+          },
+          {
+            "type": "PATTERN",
+            "value": ".*"
+          }
+        ]
+      }
+    },
+    "contracts": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
           "type": "SYMBOL",
-          "name": "price_line"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "options_leg"
+          "name": "option_contract"
         }
-      ]
+      }
     },
     "price_line": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "number"
+          "type": "FIELD",
+          "name": "quantity",
+          "content": {
+            "type": "SYMBOL",
+            "name": "quantity"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "at"
+          "type": "STRING",
+          "value": "@"
         },
         {
-          "type": "SYMBOL",
-          "name": "price"
+          "type": "FIELD",
+          "name": "price",
+          "content": {
+            "type": "SYMBOL",
+            "name": "price"
+          }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "debit"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "credit"
-            }
-          ]
+          "type": "FIELD",
+          "name": "debit_credit",
+          "content": {
+            "type": "SYMBOL",
+            "name": "debit_credit"
+          }
         }
       ]
     },
-    "at": {
-      "type": "STRING",
-      "value": "@"
-    },
-    "debit": {
-      "type": "STRING",
-      "value": "(DEBIT)"
-    },
-    "credit": {
-      "type": "STRING",
-      "value": "(CREDIT)"
-    },
-    "options_leg": {
+    "option_contract": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "side"
+          "type": "FIELD",
+          "name": "side",
+          "content": {
+            "type": "SYMBOL",
+            "name": "side"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "number"
+          "type": "FIELD",
+          "name": "ratio",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "quantity"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "underlying"
+          "type": "FIELD",
+          "name": "underlying",
+          "content": {
+            "type": "SYMBOL",
+            "name": "underlying"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "expiration"
+          "type": "FIELD",
+          "name": "expiration",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expiration"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "number"
+          "type": "FIELD",
+          "name": "strike",
+          "content": {
+            "type": "SYMBOL",
+            "name": "strike"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "right"
+          "type": "FIELD",
+          "name": "right",
+          "content": {
+            "type": "SYMBOL",
+            "name": "right"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "open_or_close"
+          "type": "FIELD",
+          "name": "open_close",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "open_close"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
         }
       ]
     },
@@ -117,51 +183,72 @@
         }
       ]
     },
-    "open_or_close": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "TO_OPEN"
-        },
-        {
-          "type": "STRING",
-          "value": "TO_CLOSE"
-        }
-      ]
+    "quantity": {
+      "type": "PATTERN",
+      "value": "\\d+"
+    },
+    "underlying": {
+      "type": "PATTERN",
+      "value": "[A-Z]{1,5}"
     },
     "expiration": {
       "type": "PATTERN",
       "value": "\\d{4}-\\d{2}-\\d{2}"
+    },
+    "strike": {
+      "type": "PATTERN",
+      "value": "\\d+(?:\\.\\d{1,2})?"
     },
     "right": {
       "type": "CHOICE",
       "members": [
         {
           "type": "PATTERN",
-          "value": "C(ALL)?"
+          "value": "P(UT)?"
         },
         {
           "type": "PATTERN",
-          "value": "P(UT)?"
+          "value": "C(ALL)?"
         }
       ]
-    },
-    "underlying": {
-      "type": "PATTERN",
-      "value": "[A-Z]{1,5}"
     },
     "price": {
       "type": "PATTERN",
       "value": "-?\\d+(?:\\.\\d{1,2})?"
     },
-    "number": {
-      "type": "PATTERN",
-      "value": "\\d+"
+    "debit": {
+      "type": "STRING",
+      "value": "DEBIT"
     },
-    "identifier": {
-      "type": "PATTERN",
-      "value": "[A-Za-z]+"
+    "credit": {
+      "type": "STRING",
+      "value": "CREDIT"
+    },
+    "debit_credit": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "debit"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "credit"
+        }
+      ]
+    },
+    "open_close": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "TO[_ ]OPEN"
+        },
+        {
+          "type": "PATTERN",
+          "value": "TO[_ ]CLOSE"
+        }
+      ]
     }
   },
   "extras": [
